@@ -1,8 +1,10 @@
-# Signature App - Plano de Desenvolvimento
+# AtlasSign - Plano de Desenvolvimento
 
 ## 📋 Visão Geral
 
 Frontend da API de Assinatura Digital da Atlas.
+**Nome:** AtlasSign
+**Domínio:** sign.protonjudi.com
 - **Home:** Landing page institucional
 - **Dashboard:** Área do usuário para gerenciar assinaturas
 - **Docs:** Documentação da API e SDK

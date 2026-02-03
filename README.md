@@ -1,6 +1,6 @@
-# Signature App
+# AtlasSign
 
-Frontend da API de Assinatura Digital Atlas.
+Frontend da plataforma de assinatura digital AtlasSign.
 
 ## 🚀 Stack
 
@@ -8,21 +8,31 @@ Frontend da API de Assinatura Digital Atlas.
 - **Styling:** Tailwind CSS + shadcn/ui
 - **State:** TanStack Query
 - **Forms:** React Hook Form + Zod
-- **Auth:** JWT via Signature API
+- **Auth:** JWT + OAuth (Google)
+- **Theme:** Dark mode nativo
 - **Deploy:** Vercel
 
 ## 📁 Estrutura
 
 ```
 signature-app/
-├── docs/                  # Documentação do projeto
-│   └── PLAN.md           # Plano de desenvolvimento
+├── docs/                     # Documentação
+│   ├── PLAN.md              # Plano de desenvolvimento
+│   └── DECISIONS.md         # Decisões de produto
 ├── src/
-│   ├── app/              # Next.js App Router
-│   ├── components/       # Componentes React
-│   ├── lib/              # Utilitários e config
-│   └── styles/           # Estilos globais
-├── public/               # Assets estáticos
+│   ├── app/                 # Next.js App Router
+│   │   ├── auth/            # Páginas de autenticação
+│   │   ├── dashboard/       # Área logada
+│   │   ├── pricing/         # Planos e preços
+│   │   ├── terms/           # Termos de uso
+│   │   └── privacy/         # Política de privacidade
+│   ├── components/          # Componentes React
+│   │   ├── layout/          # Header, Footer, etc
+│   │   └── ui/              # shadcn/ui components
+│   ├── lib/                 # Utilitários
+│   ├── hooks/               # Custom hooks
+│   └── contexts/            # React contexts
+├── public/                  # Assets estáticos
 └── package.json
 ```
 
@@ -45,14 +55,25 @@ npm run lint
 ## 🔗 Links
 
 - **API:** https://sign.protonjudi.com
-- **Docs:** https://sign.protonjudi.com/api/docs
-- **Produção:** https://app.protonjudi.com (TBD)
+- **Swagger:** https://sign.protonjudi.com/api/docs
+- **Produção:** sign.protonjudi.com (TBD)
 
 ## 📋 Status
 
-- [ ] Setup inicial
-- [ ] Autenticação
+- [x] Setup inicial (Next.js + Tailwind + shadcn)
+- [x] Layout (Header, Footer)
+- [x] Landing page (Home)
+- [x] Dark mode
+- [x] Termos de uso
+- [x] Política de privacidade
+- [ ] Autenticação (login, register)
+- [ ] OAuth Google
 - [ ] Dashboard
-- [ ] Envelopes
-- [ ] Legal pages
+- [ ] Envelopes CRUD
+- [ ] Pricing page completa
+- [ ] API tokens
 - [ ] Deploy
+
+## 📄 Licença
+
+Proprietário - Todos os direitos reservados.
