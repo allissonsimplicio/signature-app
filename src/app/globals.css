@@ -125,4 +125,7 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+  .container {
+    @apply mx-auto max-w-7xl;
+  }
 }
