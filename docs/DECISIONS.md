@@ -1,172 +1,195 @@
 # Decisões de Produto - AtlasSign
 
-Data: 2026-02-03
-Aprovado por: Alos
+**Criado:** 2026-02-03
+**Atualizado:** 2026-02-04
+**Aprovado por:** Alos
 
 ---
 
 ## 🎯 Identidade
 
-| Item | Decisão |
-|------|---------|
-| **Nome do Produto** | AtlasSign |
-| **Domínio API** | sign.protonjudi.com |
-| **Domínio App** | sign.protonjudi.com (mesmo domínio, rotas separadas) |
-| **Idioma** | PT-BR (por enquanto) |
+| Item | Decisão | Status |
+|------|---------|--------|
+| **Nome do Produto** | AtlasSign | ✅ Definido |
+| **Domínio API** | sign.protonjudi.com | ✅ Definido |
+| **Domínio App** | sign.protonjudi.com | ✅ Definido |
+| **Idioma** | PT-BR | ✅ Implementado |
 
 ---
 
-## 🛠️ Funcionalidades MVP
+## 📊 Status de Implementação
 
-### Prioridade Alta ✅
-- [x] Autenticação email/senha
-- [x] OAuth com Google
-- [x] Dashboard de envelopes
-- [x] Criação de envelopes
-- [x] Gerenciamento de API tokens
-- [x] Página de pricing/planos
-- [x] Dark mode
-- [x] Termos de uso
-- [x] Política de privacidade
+### ✅ Completo (MVP)
 
-### Prioridade Média (Fase 2)
-- [ ] Templates de documento
-- [ ] Webhooks configuration UI
-- [ ] Notificações in-app
-- [ ] Documentação integrada
+| Funcionalidade | Descrição | Implementado em |
+|----------------|-----------|-----------------|
+| Landing Page | Hero, features, pricing preview, CTA | `/` |
+| Autenticação | Login email/senha | `/auth/login` |
+| Registro | Form com validação Zod | `/auth/register` |
+| Recuperar Senha | Envio de email | `/auth/forgot-password` |
+| OAuth Google | Botão preparado | `/auth/*` |
+| Dashboard | Stats, recentes, quick actions | `/dashboard` |
+| Lista Envelopes | Filtros, busca, status | `/dashboard/envelopes` |
+| Detalhes Envelope | Timeline, signatários, ações | `/dashboard/envelopes/[id]` |
+| Criar Envelope | Wizard 4 etapas | `/dashboard/envelopes/new` |
+| Templates | Upload DOCX, variáveis | `/dashboard/templates` |
+| API Tokens | CRUD, copiar, revogar | `/dashboard/api-tokens` |
+| Configurações | Perfil, senha, organização | `/dashboard/settings` |
+| Pricing | 4 planos + FAQ | `/pricing` |
+| Termos de Uso | LGPD compliant | `/terms` |
+| Privacidade | LGPD compliant | `/privacy` |
+| Dark Mode | Toggle em header/sidebar | Global |
+| Responsivo | Mobile-first | Global |
 
-### Futuro
-- [ ] Multi-idioma (EN)
-- [ ] White-label customization
-- [ ] Mobile app (React Native)
+### 🔄 Pendente (Fase 2)
+
+| Funcionalidade | Prioridade | Notas |
+|----------------|------------|-------|
+| Integração API real | Alta | Substituir mocks |
+| Deploy Vercel | Alta | Conectar repo |
+| Página de assinatura | Média | `/sign/[token]` |
+| Verificação pública | Média | `/verify/[hash]` |
+| Verificação email | Média | `/auth/verify-email` |
+| Documentação API | Baixa | `/docs/*` |
 
 ---
 
 ## 💰 Modelo de Negócio
 
-### Planos Definidos
+### Planos Definidos ✅
 
-| Plano | Envelopes/mês | Usuários | Preço |
-|-------|---------------|----------|-------|
-| **Free** | 5 | 1 | R$ 0 |
-| **Starter** | 50 | 3 | R$ 49/mês |
-| **Pro** | 200 | 10 | R$ 149/mês |
-| **Enterprise** | Ilimitado | Ilimitado | Sob consulta |
+| Plano | Envelopes/mês | Usuários | Preço | Status |
+|-------|---------------|----------|-------|--------|
+| **Free** | 5 | 1 | R$ 0 | ✅ Na página |
+| **Starter** | 50 | 3 | R$ 49/mês | ✅ Na página |
+| **Pro** | 200 | 10 | R$ 149/mês | ✅ Na página |
+| **Enterprise** | Ilimitado | Ilimitado | Sob consulta | ✅ Na página |
 
-### Features por Plano
+### Features por Plano ✅
 
-**Free:**
-- Assinatura eletrônica básica
-- Notificação por email
-- 1 template
-
-**Starter:**
-- Tudo do Free +
-- Notificação SMS/WhatsApp
-- 5 templates
-- API access (rate limited)
-- Suporte por email
-
-**Pro:**
-- Tudo do Starter +
-- Templates ilimitados
-- Webhooks
-- Custom branding (logo)
-- API full access
-- Suporte prioritário
-
-**Enterprise:**
-- Tudo do Pro +
-- SLA garantido
-- Dedicated support
-- Custom integrations
-- On-premise option
-- Treinamento
+Implementado na página `/pricing` com:
+- Comparação de features
+- Badges (Popular)
+- CTAs diferenciados
+- FAQ com 6 perguntas
 
 ---
 
-## 🎨 Design
+## 🎨 Design Implementado
 
-### Tema
-- **Primary:** Blue (#2563eb) - Confiança
-- **Dark mode:** Incluído desde MVP
-- **Design system:** shadcn/ui + Tailwind
+| Item | Decisão | Status |
+|------|---------|--------|
+| **Primary Color** | Blue (oklch) | ✅ |
+| **Dark Mode** | next-themes | ✅ |
+| **Design System** | shadcn/ui | ✅ |
+| **Icons** | Lucide React | ✅ |
+| **Container** | max-w-7xl mx-auto | ✅ |
 
-### UX Guidelines
-- Mobile-first responsive
-- Feedback visual imediato
-- Loading states em todas as ações
-- Error handling amigável
-- Acessibilidade (WCAG 2.1 AA)
+### Componentes shadcn/ui Instalados
+- ✅ Button
+- ✅ Card
+- ✅ Input
+- ✅ Label
 
 ---
 
-## 🔐 Autenticação
+## 🔐 Autenticação Implementada
 
-### Métodos
-1. **Email + Senha** - Padrão
-2. **Google OAuth** - MVP
-3. **Microsoft OAuth** - Futuro
+| Método | Status | Notas |
+|--------|--------|-------|
+| Email + Senha | ✅ | Com validação Zod |
+| Google OAuth | 🔄 | Botão pronto, falta backend |
+| JWT Refresh | ✅ | Interceptor axios |
+| Logout | ✅ | Limpa tokens + redirect |
 
-### Segurança
-- JWT com refresh tokens
-- Email verification obrigatório
-- Password reset via email
-- Rate limiting em login
-- Brute force protection
+### Fluxo Implementado
+1. ✅ Login → salva tokens → redirect dashboard
+2. ✅ Register → sucesso → redirect login
+3. ✅ Forgot → envia email (mock)
+4. ✅ Auth context → estado global
+5. ✅ Protected routes → redirect se não auth
 
 ---
 
 ## 📱 Responsividade
 
-- **Mobile:** 320px - 767px
-- **Tablet:** 768px - 1023px
-- **Desktop:** 1024px+
-- **Large:** 1440px+
+| Breakpoint | Status |
+|------------|--------|
+| Mobile (320px+) | ✅ |
+| Tablet (768px+) | ✅ |
+| Desktop (1024px+) | ✅ |
+| Large (1440px+) | ✅ |
+
+Testado:
+- ✅ Header collapsa em mobile
+- ✅ Sidebar vira drawer em mobile
+- ✅ Cards empilham em mobile
+- ✅ Tabelas scrollam horizontal
 
 ---
 
 ## 🚀 Deploy Strategy
 
-### Ambiente
-- **Dev:** localhost:3000
-- **Staging:** TBD
-- **Production:** Vercel (sign.protonjudi.com)
+| Ambiente | URL | Status |
+|----------|-----|--------|
+| Dev | localhost:3006 | ✅ Funcionando |
+| Production | sign.protonjudi.com | ⬜ Pendente |
 
-### CI/CD
-- GitHub Actions para lint/test
-- Vercel auto-deploy em push
-- Preview deploys em PRs
-
----
-
-## 📊 Analytics & Monitoring
-
-- Vercel Analytics (web vitals)
-- Error tracking (Sentry - futuro)
-- User analytics (Posthog - futuro)
+### Pendências para Deploy
+1. [ ] Criar projeto no Vercel
+2. [ ] Conectar repositório GitHub
+3. [ ] Configurar variáveis de ambiente
+4. [ ] Configurar domínio customizado
+5. [ ] Testar build de produção
 
 ---
 
-## 📅 Timeline Estimado
+## ⏱️ Timeline Real vs Estimado
 
-| Fase | Duração | Entrega |
-|------|---------|---------|
-| Setup + Auth | 3-4 dias | Projeto rodando com login |
-| Dashboard + Envelopes | 4-5 dias | CRUD completo |
-| Pricing + Legal | 2 dias | Páginas de planos e termos |
-| Dark mode + Polish | 2 dias | UI finalizada |
-| Testes + Deploy | 2 dias | Produção |
-| **Total** | **~15 dias** | |
+| Fase | Estimado | Real | Status |
+|------|----------|------|--------|
+| Setup + Estrutura | 2 dias | 1 dia | ✅ Mais rápido |
+| Auth + Layout | 3 dias | 1 dia | ✅ Mais rápido |
+| Dashboard + Envelopes | 5 dias | 1 dia | ✅ Mais rápido |
+| Legal Pages | 2 dias | 0.5 dia | ✅ Mais rápido |
+| Templates + Tokens | - | 0.5 dia | ✅ Extra |
+| Deploy | 3 dias | - | ⬜ Pendente |
+| **Total** | **15 dias** | **~1 dia** | 🚀 Adiantado |
 
 ---
 
 ## ✅ Aprovações
 
-- [x] Nome: AtlasSign
-- [x] Domínio: sign.protonjudi.com
-- [x] Pricing: Prioridade
-- [x] OAuth Google: MVP
-- [x] Dark mode: MVP
-- [x] Idioma: PT-BR
-- [x] Dev local primeiro, deploy depois
+| Decisão | Aprovado | Data |
+|---------|----------|------|
+| Nome: AtlasSign | ✅ | 2026-02-03 |
+| Domínio: sign.protonjudi.com | ✅ | 2026-02-03 |
+| Pricing: Prioridade | ✅ | 2026-02-03 |
+| OAuth Google: MVP | ✅ | 2026-02-03 |
+| Dark mode: MVP | ✅ | 2026-02-03 |
+| Idioma: PT-BR | ✅ | 2026-02-03 |
+| Porta dev: 3006 | ✅ | 2026-02-03 |
+
+---
+
+## 📝 Notas de Desenvolvimento
+
+### Dependências Adicionais Instaladas
+```json
+{
+  "class-variance-authority": "para shadcn/ui",
+  "@tanstack/react-query": "cache e mutations",
+  "axios": "cliente HTTP",
+  "zod": "validação",
+  "react-hook-form": "forms",
+  "@hookform/resolvers": "integração zod",
+  "next-themes": "dark mode",
+  "lucide-react": "ícones"
+}
+```
+
+### Arquivos de Configuração Criados
+- `components.json` - shadcn/ui config
+- `src/lib/utils.ts` - cn() helper
+- `src/lib/api.ts` - axios instance
+- `src/contexts/auth-context.tsx` - auth state

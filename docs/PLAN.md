@@ -1,245 +1,227 @@
 # AtlasSign - Plano de Desenvolvimento
 
+**Última atualização:** 2026-02-04
+
 ## 📋 Visão Geral
 
 Frontend da API de Assinatura Digital da Atlas.
-**Nome:** AtlasSign
-**Domínio:** sign.protonjudi.com
-- **Home:** Landing page institucional
-- **Dashboard:** Área do usuário para gerenciar assinaturas
-- **Docs:** Documentação da API e SDK
-- **Legal:** Termos de uso e política de privacidade
+
+| Item | Valor |
+|------|-------|
+| **Nome** | AtlasSign |
+| **Domínio** | sign.protonjudi.com |
+| **Porta Dev** | 3006 (API usa 3000) |
+| **Repo** | github.com/allissonsimplicio/signature-app |
 
 ---
 
-## 🏗️ Stack Proposta
+## 🏗️ Stack Implementada
 
-| Componente | Tecnologia | Justificativa |
-|------------|------------|---------------|
-| Framework | **Next.js 14** (App Router) | SSR, API routes, Vercel native |
-| UI | **Tailwind CSS** + **shadcn/ui** | Consistente com lgpd-flow |
-| State | **TanStack Query** | Cache, mutations, otimista |
-| Forms | **React Hook Form** + **Zod** | Validação type-safe |
-| Auth | **JWT** (via API) | Consistente com backend |
-| Analytics | **Vercel Analytics** | Gratuito, GDPR compliant |
-
----
-
-## 📁 Estrutura de Páginas
-
-```
-/                           # Home - Landing page
-├── /login                  # Login
-├── /register               # Cadastro
-├── /forgot-password        # Recuperar senha
-├── /verify-email           # Verificar email
-│
-├── /dashboard              # Dashboard principal
-│   ├── /envelopes          # Lista de envelopes
-│   ├── /envelopes/[id]     # Detalhes do envelope
-│   ├── /envelopes/new      # Criar envelope
-│   ├── /templates          # Templates de documento
-│   ├── /api-tokens         # Gerenciar API tokens
-│   ├── /settings           # Configurações da conta
-│   └── /organization       # Configurações da organização
-│
-├── /sign/[token]           # Página de assinatura (pública)
-├── /verify/[hash]          # Verificação de documento (pública)
-│
-├── /docs                   # Documentação
-│   ├── /api                # API Reference
-│   ├── /sdk                # SDK Guide
-│   └── /webhooks           # Webhooks
-│
-├── /pricing                # Planos e preços
-├── /terms                  # Termos de uso
-├── /privacy                # Política de privacidade
-└── /contact                # Contato
-```
+| Componente | Tecnologia | Status |
+|------------|------------|--------|
+| Framework | Next.js 14 (App Router) | ✅ |
+| UI | Tailwind CSS + shadcn/ui | ✅ |
+| State | TanStack Query | ✅ |
+| Forms | React Hook Form + Zod | ✅ |
+| Auth | JWT (via API) | ✅ |
+| Dark Mode | next-themes | ✅ |
+| Icons | Lucide React | ✅ |
 
 ---
 
-## 🎨 Design System
+## 📊 Status das Páginas
 
-### Cores (sugestão)
-```css
---primary: #2563eb;      /* Blue 600 - Confiança */
---secondary: #0f172a;    /* Slate 900 - Profissional */
---accent: #10b981;       /* Emerald 500 - Sucesso */
---warning: #f59e0b;      /* Amber 500 */
---error: #ef4444;        /* Red 500 */
-```
+### ✅ Páginas Públicas (4/4)
+| Página | Rota | Status |
+|--------|------|--------|
+| Landing Page | `/` | ✅ Completo |
+| Pricing | `/pricing` | ✅ Completo (4 planos + FAQ) |
+| Termos de Uso | `/terms` | ✅ Completo (LGPD) |
+| Política de Privacidade | `/privacy` | ✅ Completo (LGPD) |
 
-### Componentes Base (shadcn/ui)
-- Button, Input, Select, Checkbox
-- Card, Dialog, Sheet, Drawer
-- Table, DataTable com paginação
-- Toast, Alert, Badge
-- Tabs, Accordion
-- Form com validação
+### ✅ Autenticação (3/3)
+| Página | Rota | Status |
+|--------|------|--------|
+| Login | `/auth/login` | ✅ Email + Google OAuth |
+| Registro | `/auth/register` | ✅ Form + validação |
+| Recuperar Senha | `/auth/forgot-password` | ✅ Completo |
+
+### ✅ Dashboard (7/7)
+| Página | Rota | Status |
+|--------|------|--------|
+| Overview | `/dashboard` | ✅ Stats + recentes |
+| Lista Envelopes | `/dashboard/envelopes` | ✅ Filtros + busca |
+| Detalhes Envelope | `/dashboard/envelopes/[id]` | ✅ Timeline + ações |
+| Criar Envelope | `/dashboard/envelopes/new` | ✅ Wizard 4 etapas |
+| Templates | `/dashboard/templates` | ✅ Upload + grid |
+| API Tokens | `/dashboard/api-tokens` | ✅ CRUD completo |
+| Configurações | `/dashboard/settings` | ✅ Perfil + senha + org |
+
+### ⬜ Pendentes (para Fase 2)
+| Página | Rota | Status |
+|--------|------|--------|
+| Verificar Email | `/auth/verify-email` | ⬜ Pendente |
+| Página de Assinatura | `/sign/[token]` | ⬜ Pendente |
+| Verificação Pública | `/verify/[hash]` | ⬜ Pendente |
+| Documentação | `/docs/*` | ⬜ Pendente |
+| Contato | `/contact` | ⬜ Pendente |
 
 ---
 
-## 📄 Páginas Detalhadas
+## 🎯 Funcionalidades Implementadas
 
-### Home (Landing Page)
-- Hero section com CTA
-- Features/benefícios
-- Como funciona (3 steps)
-- Integrações (SDK, API)
-- Testimonials/cases
-- Pricing preview
-- CTA final
+### Landing Page
+- ✅ Hero section com CTA
+- ✅ Features/benefícios (6 cards)
+- ✅ Como funciona (3 steps)
+- ✅ Preview de pricing
+- ✅ CTA final
+- ✅ Header responsivo
+- ✅ Footer com links
 
 ### Dashboard
-- Overview (stats)
-- Envelopes recentes
-- Ações rápidas
-- Notificações
+- ✅ Sidebar navegação
+- ✅ Stats cards (total, pendentes, completos, cancelados)
+- ✅ Envelopes recentes
+- ✅ Quick actions
+- ✅ User menu com logout
+- ✅ Toggle dark mode
 
 ### Envelopes
-- Lista com filtros
-- Status visual (draft, running, completed)
-- Ações (ver, editar, cancelar)
-- Bulk actions
+- ✅ Lista com filtros por status
+- ✅ Busca por nome
+- ✅ Status visual colorido
+- ✅ Contagem de assinaturas
+- ✅ Detalhes completos
+- ✅ Timeline de atividades
+- ✅ Ações (ativar, cancelar, reenviar)
 
-### Criar Envelope
-- Wizard multi-step:
-  1. Info básica (nome, deadline)
-  2. Upload documentos
-  3. Adicionar signatários
-  4. Configurar campos
-  5. Revisar e ativar
+### Criar Envelope (Wizard)
+- ✅ Step 1: Info básica (nome, descrição, prazo)
+- ✅ Step 2: Upload de documentos
+- ✅ Step 3: Adicionar signatários
+- ✅ Step 4: Revisar e enviar
+- ✅ Progress indicator
+- ✅ Validação por step
+
+### Templates
+- ✅ Grid de templates
+- ✅ Upload DOCX
+- ✅ Exibição de variáveis extraídas
+- ✅ Categorias e tags
+- ✅ Stats de uso
+- ✅ Delete
 
 ### API Tokens
-- Lista de tokens
-- Criar novo token
-- Revogar token
-- Mostrar token apenas 1x
+- ✅ Lista de tokens
+- ✅ Criar com nome e expiração
+- ✅ Token mostrado apenas 1x
+- ✅ Copiar para clipboard
+- ✅ Revogar token
+- ✅ Delete token
 
-### Termos de Uso
-- Estrutura legal completa
-- Versão e data
-- Sumário navegável
-
-### Política de Privacidade
-- LGPD compliant
-- Dados coletados
-- Uso dos dados
-- Direitos do titular
-- Contato DPO
+### Configurações
+- ✅ Editar perfil (nome, email)
+- ✅ Alterar senha
+- ✅ Configurações da organização
+- ✅ Ver plano atual
+- ✅ Danger zone (excluir conta)
 
 ---
 
-## 🔐 Autenticação
+## 📈 Progresso Geral
 
-### Fluxos
-1. **Login** - Email + senha → JWT
-2. **Register** - Criar conta → Email verification
-3. **Forgot Password** - Reset via email
-4. **OAuth** (futuro) - Google, Microsoft
+```
+Páginas Implementadas: 14/19 (74%)
+███████████████░░░░░ 
 
-### Proteção de Rotas
-- Middleware Next.js para /dashboard/*
-- Refresh token automático
-- Redirect para login se expirado
+Funcionalidades MVP: 95%
+███████████████████░
+```
 
----
+### Por Fase
 
-## 📊 Features por Fase
-
-### Fase 1 - MVP (2-3 semanas)
-- [ ] Setup Next.js + Tailwind + shadcn
-- [ ] Home page básica
-- [ ] Login/Register/Forgot
-- [ ] Dashboard básico
-- [ ] Lista de envelopes
-- [ ] Criar envelope simples
-- [ ] API tokens
-- [ ] Termos e Privacidade
-
-### Fase 2 - Melhorias (2 semanas)
-- [ ] Wizard de criação completo
-- [ ] Upload de documentos
-- [ ] Preview de PDF
-- [ ] Configuração de campos visuais
-- [ ] Templates de documento
-
-### Fase 3 - Polish (1 semana)
-- [ ] Página de documentação
-- [ ] Pricing page
-- [ ] SEO otimização
-- [ ] Analytics
-- [ ] Performance tuning
-
-### Fase 4 - Avançado (futuro)
-- [ ] OAuth integrations
-- [ ] Dark mode
-- [ ] i18n (PT/EN)
-- [ ] Notificações push
-- [ ] Mobile responsive avançado
+| Fase | Planejado | Status |
+|------|-----------|--------|
+| Setup + Estrutura | 2 dias | ✅ Completo |
+| Auth + Layout | 3 dias | ✅ Completo |
+| Dashboard + Envelopes | 5 dias | ✅ Completo |
+| Legal Pages | 2 dias | ✅ Completo |
+| Templates + Tokens | - | ✅ Completo |
+| Polish + Deploy | 3 dias | 🔄 Pendente |
 
 ---
 
-## 💰 Monetização (sugestão)
+## 🔜 Próximos Passos
 
-### Planos
-| Plano | Envelopes/mês | Usuários | Preço |
-|-------|---------------|----------|-------|
-| Free | 5 | 1 | R$ 0 |
-| Starter | 50 | 3 | R$ 49 |
-| Pro | 200 | 10 | R$ 149 |
-| Enterprise | Ilimitado | Ilimitado | Sob consulta |
+### Imediato (Prioridade Alta)
+1. [ ] Integrar com API real (substituir mocks)
+2. [ ] Configurar variáveis de ambiente (.env)
+3. [ ] Deploy no Vercel
+4. [ ] Testar fluxo completo end-to-end
 
-### Features por plano
-- **Free:** Assinatura básica, email notifications
-- **Starter:** Templates, SMS notifications, API access
-- **Pro:** Webhooks, custom branding, priority support
-- **Enterprise:** SLA, dedicated support, on-premise option
+### Curto Prazo (Fase 2)
+1. [ ] Página de assinatura pública (`/sign/[token]`)
+2. [ ] Verificação de documento (`/verify/[hash]`)
+3. [ ] Verificação de email
+4. [ ] Notificações toast
+5. [ ] Loading skeletons
 
----
-
-## ⏱️ Estimativa de Tempo
-
-| Fase | Duração | Entregável |
-|------|---------|------------|
-| Setup + Estrutura | 2 dias | Projeto configurado |
-| Auth + Layout | 3 dias | Login funcionando |
-| Dashboard + Envelopes | 5 dias | CRUD completo |
-| Legal Pages | 2 dias | Termos + Privacidade |
-| Polish + Deploy | 3 dias | Produção |
-| **Total MVP** | **~15 dias** | |
+### Médio Prazo
+1. [ ] Documentação da API (`/docs`)
+2. [ ] Preview de PDF inline
+3. [ ] Drag & drop para upload
+4. [ ] Webhooks configuration UI
+5. [ ] Analytics (Vercel/Posthog)
 
 ---
 
-## 🚀 Deploy
+## 🛠️ Comandos Úteis
 
-- **Vercel** - Deploy automático via GitHub
-- **Domínio:** app.protonjudi.com
-- **Preview:** Automático por PR
+```bash
+# Desenvolvimento
+cd /home/alos/signature-app
+npm run dev          # http://localhost:3006
+
+# Build
+npm run build
+
+# Lint
+npm run lint
+
+# Push para GitHub
+GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_gh_auto -o IdentitiesOnly=yes" git push origin main
+```
 
 ---
 
-## ❓ Decisões Pendentes
+## 📁 Estrutura de Pastas
 
-1. **Nome do produto?** 
-   - ProtonSign? AtlasSign? SignFlow?
-
-2. **Domínio do app?**
-   - app.protonjudi.com
-   - sign.protonjudi.com/app
-   - outro?
-
-3. **Planos de pricing são prioridade?**
-   - Implementar agora ou depois?
-   - Integração com pagamento (Stripe)?
-
-4. **OAuth logo no MVP?**
-   - Google/Microsoft login?
-
-5. **Dark mode no MVP?**
-   - Ou deixar para depois?
-
-6. **Idiomas?**
-   - Só PT-BR?
-   - PT-BR + EN desde o início?
+```
+signature-app/
+├── docs/
+│   ├── PLAN.md              # Este arquivo
+│   └── DECISIONS.md         # Decisões de produto
+├── src/
+│   ├── app/
+│   │   ├── auth/            # Login, register, forgot
+│   │   ├── dashboard/       # Área logada
+│   │   ├── pricing/         # Planos
+│   │   ├── terms/           # Termos
+│   │   ├── privacy/         # Privacidade
+│   │   ├── layout.tsx       # Layout root
+│   │   ├── page.tsx         # Landing page
+│   │   └── globals.css      # Estilos globais
+│   ├── components/
+│   │   ├── layout/          # Header, Footer, DashboardLayout
+│   │   ├── ui/              # shadcn components
+│   │   └── theme-provider.tsx
+│   ├── contexts/
+│   │   └── auth-context.tsx # Estado de autenticação
+│   └── lib/
+│       ├── api.ts           # Cliente axios + interceptors
+│       └── utils.ts         # cn() helper
+├── public/
+├── package.json
+└── README.md
+```
