@@ -28,6 +28,7 @@ const navigation = [
   { name: "Envelopes", href: "/dashboard/envelopes", icon: FileText },
   { name: "Templates", href: "/dashboard/templates", icon: FolderOpen },
   { name: "API Tokens", href: "/dashboard/api-tokens", icon: Key },
+  { name: "Organização", href: "/dashboard/organization", icon: Building },
   { name: "Configurações", href: "/dashboard/settings", icon: Settings },
 ]
 
@@ -98,25 +99,33 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 px-3 py-4">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                    isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                  )}
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.name}
-                </Link>
-              )
-            })}
+            {navigation
+              .filter((item) => {
+                // Apenas OWNER e ADMIN podem ver a página de Organização
+                if (item.href.startsWith("/dashboard/organization")) {
+                  return user?.role === "OWNER" || user?.role === "ADMIN"
+                }
+                return true
+              })
+              .map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    )}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {item.name}
+                  </Link>
+                )
+              })}
           </nav>
 
           {/* Organization & Plan */}
